@@ -1,0 +1,43 @@
+#Dev
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    url: jdbc:mysql:///nssp713db
+    username: root
+---
+#Prod
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    password: manager
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: system
+---
+#Test
+spring:
+  profiles: test
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    type: org.apache.commons.dbcp2.BasicDataSource
+    url: jdbc:mysql:///nssp713db
+    username: root
+---
+#Uat
+spring:
+  profiles: uat
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    password: manager
+    type: org.apache.commons.dbcp2.BasicDataSource
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: system
+---
+#base
+spring:
+  profiles:
+    active: dev

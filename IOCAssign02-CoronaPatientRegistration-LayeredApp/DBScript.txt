@@ -1,0 +1,26 @@
+DataBase related Details
+------------------------------------
+------------------------------------------------------------
+CORONA_PATIENT table 
+------------------------------------------------------------
+CREATE TABLE "SYSTEM"."CORONA_PATIENT" 
+   ("PATIENT_ID" NUMBER(*,0) NOT NULL ENABLE, 
+	"PATIENT_NAME" VARCHAR2(20 BYTE), 
+	"PATIENT_ADDRESS" VARCHAR2(20 BYTE), 
+	"PATIENT_AGE" NUMBER(*,0), 
+	"HOSPITAL_NAME" VARCHAR2(20 BYTE), 
+	"NO_OF_DAYS" NUMBER(*,0), 
+	"BILL_AMOUNT" FLOAT(126), 
+	CONSTRAINT "CORONA_PATIENT_PK" PRIMARY KEY ("PATIENT_ID"));
+------------------------------------------------------------
+
+------------------------------------------------------------
+PATIENT_NO_SEQ Sequence
+------------------------------------------------------------
+CREATE SEQUENCE  "SYSTEM"."PATIENT_ID_SEQ"  
+	MINVALUE 101 
+	MAXVALUE 1000 
+	INCREMENT BY 1 
+	START WITH 101 
+	CACHE 20 ORDER  NOCYCLE ;
+------------------------------------------------------------

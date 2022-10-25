@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form Registration</title>
+<style type="text/css">
+	body{
+	    background: url("images/photo-1456513080510-7bf3a84b82f8.jpg");
+	    height: 100%;
+	    width: 100%;
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    opacity: 0.65;
+	    position: fixed;
+	}
+	.h1{
+	    color:rgb(700, 0, 0);
+	    font-family:Georgia, 'Times New Roman', Times, serif;
+	    position: relative;
+	    left: 730px;
+	    top: 40px;
+	}
+	#form{
+	    background:darkslategrey;
+	    width: 360px;
+	    height: auto;
+	    position:relative;
+	    left: 700px;
+	    top: 45px;
+	    padding: 15px;
+	    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	    color:beige;
+	    border: 1px hidden; 
+	    border-radius: 25px;
+	}
+</style>
+</head>
+<body>
+    <h2 class="h1">Student Registration Form</h2>
+    <form action="controller" method="get">
+        <div id="form">        
+            <table>
+                <tr>
+                    <td>Student Id </td>
+                    <td><input type="text" name="sid" placeholder="3567"></td> 
+                </tr>
+                <tr>
+                    <td>Student Name : </td>
+                    <td><input type="text" name="sname" placeholder="Nirmal Kumar Sahu"></td> 
+                </tr>
+                <tr>
+                    <td>Address : </td>
+                    <td><textarea name="saddress" rows="3" cols="21" placeholder="193 house hydrabad"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Course : </td>
+                    <td><input type="text" name="scourse" placeholder="Java"></td>
+                </tr>
+                <tr>
+                    <td>Mark 1 : </td>
+                    <td><input type="text" name="sm1" placeholder="30"></td>
+                </tr>
+                <tr>
+                    <td>Mark 2 : </td>
+                    <td><input type="text" name="sm2" placeholder="30"></td>
+                </tr>
+                <tr>
+                    <td>Mark 3 : </td>
+                    <td><input type="text" name="sm3" placeholder="30"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+                        <input type="reset" value="cancle">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp; 
+                        <input type="submit" name="type" value="Student Registered">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="index.html"style="color:gold">back</a></td>
+                </tr>
+            </table>
+        </div>
+    </form></body>
+</html>

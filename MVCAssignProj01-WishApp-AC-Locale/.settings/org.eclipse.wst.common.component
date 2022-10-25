@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="MVCAssignProj01-WishApp-AC-Locale">
+		<property name="context-root" value="MVCAssignProj01-WishApp-AC-Locale"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
+		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
+	</wb-module>
+</project-modules>

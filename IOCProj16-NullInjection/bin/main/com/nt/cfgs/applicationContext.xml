@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- Some Date Bean -->
+	<bean id="dob" class="java.util.Date">
+		<property name="year" value="99"/>
+		<property name="month" value="11"/>
+		<property name="date" value="17"/>
+	</bean>	
+	<bean id="doj" class="java.util.Date">
+		<property name="year" value="114"/>
+		<property name="month" value="5"/>
+		<property name="date" value="27"/>
+	</bean>	
+	<bean id="dom" class="java.util.Date">
+		<property name="year" value="117"/>
+		<property name="month" value="5"/>
+		<property name="date" value="6"/>
+	</bean>	
+
+	<bean id="ramInfo" class="com.nt.beans.PersonInfo">
+		<constructor-arg value="3456789022"/>
+		<constructor-arg value="Ram"/>
+		<constructor-arg ref="dob"/>
+		<constructor-arg ref="doj"/>
+		<constructor-arg ref="dom"/>
+	</bean>
+
+	<bean id="hariInfo" class="com.nt.beans.PersonInfo">
+		<constructor-arg value="3456789022"/>
+		<constructor-arg value="Ram"/>
+		<constructor-arg ref="dob"/>
+		<constructor-arg><null/></constructor-arg>
+		<constructor-arg><null/></constructor-arg>
+	</bean>
+
+</beans>

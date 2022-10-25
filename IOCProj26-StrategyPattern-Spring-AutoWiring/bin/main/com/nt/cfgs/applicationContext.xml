@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName" xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- Dependent bean configuration -->
+	<bean id="courier" class="com.nt.components.DTDC"/>
+	<bean id="fFlight" class="com.nt.components.FirstFlight" primary="true"/>
+	<bean id="bDart" class="com.nt.components.BlueDart"/>
+	
+	<!-- Target bean configuration -->
+	<!-- <bean id="fpkt" class="com.nt.components.Flipkart" autowire="byName"/> -->
+	<!-- <bean id="fpkt" class="com.nt.components.Flipkart" autowire="byType"/> -->
+	<!-- <bean id="fpkt" class="com.nt.components.Flipkart" autowire="constructor"/> -->
+	<!-- <bean id="fpkt" class="com.nt.components.Flipkart" autowire="autodetect"/> -->
+	<!-- <bean id="fpkt" class="com.nt.components.Flipkart" autowire="default"/> -->
+	<bean id="fpkt" class="com.nt.components.Flipkart" autowire="no"/>
+	
+</beans>

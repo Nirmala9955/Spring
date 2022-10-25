@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- Configure the DataSource -->
+	<bean id="dmds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="system"/>
+		<property name="password" value="manager"/>
+	</bean>
+	
+	<!-- Configure DataSoruce object to DAO class -->
+	<bean id="coronaPatientDAO" class="com.nt.dao.CoronaPatientDAOImpl">
+		<constructor-arg ref="dmds"/>
+	</bean>
+	
+	<!-- Configure DAO object to Service class -->
+	<bean id="coronaPatientService" class="com.nt.service.CoronaPatientMgmtServiceImpl">
+		<constructor-arg ref="coronaPatientDAO"/>
+	</bean>
+	
+	<!-- Configure Service object to Controller class -->
+	<bean id="controller" class="com.nt.controller.MainController">
+		<constructor-arg ref="coronaPatientService"/>
+	</bean>
+</beans>

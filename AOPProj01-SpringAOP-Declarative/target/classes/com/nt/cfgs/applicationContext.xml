@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Configure Target class -->
+	<bean id="bankService" class="com.nt.service.BankService"/>
+	
+	<!-- Configure Advice class  -->
+	<bean id="pmAdvice" class="com.nt.advice.PerformanceMonitoringAdvice"/>
+	
+	<!-- Configure ProxyFactoryBean -->
+	<bean id="pfb" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="bankService"/>
+		<property name="interceptorNames">
+			<array>
+				<value>pmAdvice</value>
+			</array>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- Configure outer bean -->
+	<bean id="kohil" class="com.nt.beans.ProfessionalCrickerter">
+		<constructor-arg value="Virat Kohil"/>
+		<constructor-arg>
+			<bean class="com.nt.beans.CricketBat"/>
+		</constructor-arg>
+	</bean>
+
+	<bean id="dhoni" class="com.nt.beans.ProfessionalCrickerter">
+		<constructor-arg value="M S Dhoni"/>
+		<constructor-arg>
+			<bean class="com.nt.beans.CricketBat"/>
+		</constructor-arg>
+	</bean>
+
+</beans>

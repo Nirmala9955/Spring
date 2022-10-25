@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.4.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<security:http use-expressions="true">
+		<!-- Specify Access restrictions on the URLS -->
+		<security:intercept-url pattern="/welcome" access="permitAll"/>
+		<security:intercept-url pattern="/countries" access="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')"/>
+		
+		<!-- Enable Basic logic -->
+		<security:form-login/>
+		
+		<!-- For Logout -->
+		<security:logout logout-success-url="/logout.jsp"/>
+		
+		<!-- To specify custom error page for 403 error (for authorization failure) -->
+		<security:access-denied-handler error-page="/access_denied.jsp"/>
+		
+		<!-- For Remember me option -->
+		<security:remember-me/>
+		
+		<!-- Maximum login -->
+		<security:session-management>
+			<security:concurrency-control error-if-maximum-exceeded="true" max-sessions="2"/>
+		</security:session-management>
+		
+	</security:http>
+	
+	<security:authentication-manager>
+		<!-- Taking current Spring bean configuration 
+		file itself as authentication info provider -->
+		<security:authentication-provider>
+			<!-- <security:user-service>
+				<security:user name="raja" password="{noop}rani" authorities="ROLE_MANAGER" disabled="true"/>
+				<security:user name="rajesh" password="{noop}hyd" authorities="ROLE_ADMIN"/>
+				<security:user name="karan" password="{noop}kiran" authorities="ROLE_CUSTOMER"/>
+				<security:user name="lokesh" password="{noop}delhi" authorities="ROLE_VISITOR"/>
+			</security:user-service> -->
+			<!-- <security:user-service properties="classpath:com/nt/commons/info.properties"/> -->
+			
+			<!-- DB configure for authentication provider -->
+			<security:jdbc-user-service data-source-ref="ds" 
+								users-by-username-query="SELECT UNAME, PWD, STATUS FROM USERS WHERE UNAME=?"
+								authorities-by-username-query="SELECT UNAME, ROLE FROM USER_ROLES WHERE UNAME=?"/>
+			
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>

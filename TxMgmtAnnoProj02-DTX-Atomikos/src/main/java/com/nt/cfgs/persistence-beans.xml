@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- XA Data Source configuration for Oracle given by Atomikos-->
+	<bean id="oracleXADS" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+		<property name="uniqueResourceName" value="XAOracle"/>
+		<property name="xaDataSourceClassName" value="oracle.jdbc.xa.client.OracleXADataSource"/>
+		<property name="xaProperties">
+			<props>
+				<prop key="databaseName">xe</prop>
+				<prop key="user">system</prop>
+				<prop key="password">manager</prop>
+				<prop key="URL">jdbc:oracle:thin:@localhost:1521:xe</prop>
+			</props>
+		</property>
+		<property name="poolSize" value="10"/>
+	</bean>
+
+	<!-- XA Data Source configuration for MySQL given by Atomikos-->
+	<bean id="mysqlXADS" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+		<property name="uniqueResourceName" value="XAMysql"/>
+		<property name="xaDataSourceClassName" value="com.mysql.cj.jdbc.MysqlXADataSource"/>
+		<property name="xaProperties">
+			<props>
+				<prop key="databaseName">nssp713db</prop>
+				<prop key="user">root</prop>
+				<prop key="password">root</prop>
+				<prop key="URL">jdbc:mysql:///nssp713db</prop>
+			</props>
+		</property>
+		<property name="poolSize" value="10"/>
+	</bean>
+	
+	<!-- JdbcTemplate configuration -->
+	<bean id="oracleTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="oracleXADS"/>
+	</bean>
+
+	<bean id="mysqlTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="mysqlXADS"/>
+	</bean>
+	
+	<context:component-scan base-package="com.nt.dao"/>
+	
+</beans>

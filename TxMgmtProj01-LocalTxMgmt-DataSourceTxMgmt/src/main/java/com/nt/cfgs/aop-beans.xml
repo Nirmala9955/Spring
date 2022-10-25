@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Configure Tx Manager -->
+	<bean id="dsTxMgmr" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<constructor-arg ref="hkDS"/>
+	</bean>
+	
+	<!-- Make Tx Manager as Tx Service -->
+	<tx:advice id="txAdvice" transaction-manager="dsTxMgmr">
+		<!-- Apply transaction attributes on the business method -->
+		<tx:attributes>
+			<!-- Specifies how Tx service should applied on given transferMoney mehtod -->
+			<tx:method name="transferMoney" propagation="REQUIRED" read-only="false" rollback-for="java.sql.SQLException" timeout="10" no-rollback-for="java.lang.NullPointerException"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config proxy-target-class="true">
+		<!-- Pointcut -->
+		<aop:pointcut expression="execution(boolean com.nt.service.BankMgmtServiceImpl.transferMoney(..))" id="ptc"/>
+		<!-- Making Tx service as AspectJ AOP advice -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="ptc"/>
+	</aop:config>
+
+</beans>

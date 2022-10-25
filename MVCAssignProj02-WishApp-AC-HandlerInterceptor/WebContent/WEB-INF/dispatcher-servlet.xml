@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Configure Handler mapping -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="welcome.htm">shc</prop>
+				<prop key="wish.htm">wmc</prop>
+			</props>
+		</property>
+		<!-- <property name="interceptors">
+			<list>
+				<ref bean="bci"/>
+				<ref bean="tci"/>
+			</list>
+		</property> -->
+	</bean>
+	
+	<!-- Configure Controller -->
+	<bean id="shc" class="com.nt.controller.ShowHomeController" />
+	
+	<bean id="wmc" class="com.nt.controller.WishMessageController">
+		<constructor-arg ref="wishService"/>
+	</bean>
+	
+	<!-- Configure Handle interceptor -->
+	<bean id="tci" class="com.nt.interceptor.TimingCheckingInterceptor"/>
+	<bean id="bci" class="com.nt.interceptor.BrowserCheckingInterceptor"/>
+	
+	<!-- Configure View Resolver -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- Interceptor  -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/wish.htm"/>
+			<bean class="com.nt.interceptor.BrowserCheckingInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+</beans>

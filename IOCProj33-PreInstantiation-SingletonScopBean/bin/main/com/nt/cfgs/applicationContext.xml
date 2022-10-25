@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Dependent bean configuration -->
+	<!-- <bean id="dtdc" class="com.nt.beans.DTDC" /> -->
+	<!-- <bean id="dtdc" class="com.nt.beans.DTDC" lazy-init="true"/> -->
+	<bean id="dtdc" class="com.nt.beans.DTDC" lazy-init="default"/>
+	<bean id="fFlight" class="com.nt.beans.FirstFlight"/>
+	<bean id="bDart" class="com.nt.beans.BlueDart"/>
+	<!-- <bean id="bDart" class="com.nt.beans.BlueDart" scope="prototype"/> -->
+
+	<!-- Target bean configuration -->
+	<bean id="fpkt" class="com.nt.beans.Flipkart" lazy-init="true">
+		<constructor-arg name="courier" ref="fFlight"/>
+	</bean>
+
+</beans>

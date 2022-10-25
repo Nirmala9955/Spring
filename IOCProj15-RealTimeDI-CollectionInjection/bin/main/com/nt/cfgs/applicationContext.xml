@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+	<!-- Configure the DataSource for Oracle-->
+	<bean id="oracleDmds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+ 		<!-- <property name="username" value="system"/> 
+ 		<property name="password" value="manager"/> -->
+		<property name="connectionProperties">
+			<props>
+				<prop key="user">system</prop>
+				<prop key="password">manager</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Configure the DataSource for MySQL-->
+	<bean id="mysqlDmds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql:///nssp713db"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<!-- Configure Oracle DataSoruce object to Oracle DAO class -->
+	<bean id="oracleCustDAO" class="com.nt.dao.OracleCustomerDAOImpl">
+		<constructor-arg ref="oracleDmds"/>
+	</bean>	
+	
+	<!-- Configure MySQL DataSoruce object to MySQL DAO class -->
+	<bean id="mysqlCustDAO" class="com.nt.dao.MySQLCustomerDAOImpl">
+		<constructor-arg ref="mysqlDmds"/>
+	</bean>
+	
+	<!-- Configure DAO object to Service class -->
+	<bean id="custService" class="com.nt.service.CustomerMgmtServiceImpl">
+		<!-- <constructor-arg ref="oracleCustDAO"/> -->
+		<constructor-arg ref="mysqlCustDAO"/>
+	</bean>
+	
+	<!-- Configure Service object to Controller class -->
+	<bean id="controller" class="com.nt.controller.MainController">
+		<constructor-arg ref="custService"/>
+	</bean>
+	
+</beans>

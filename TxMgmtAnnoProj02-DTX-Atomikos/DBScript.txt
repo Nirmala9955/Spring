@@ -1,0 +1,4 @@
+DTX_BANKACCOUNT (Both Oracle and MySQL DB s/w)
+	|-> accno (pk)
+	|-> holdername 
+	|-> balance

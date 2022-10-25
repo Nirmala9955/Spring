@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- Static Factory Method Bean instantiation giving its own class object -->
+	<bean id="cls" class="java.lang.Class" factory-method="forName">
+		<constructor-arg value="java.util.Date"/>
+	</bean>
+
+	<!-- Static Factory Method Bean instantiation giving its related class object -->
+	<bean id="cal" class="java.util.Calendar" factory-method="getInstance"/>
+	
+	<!-- Static Factory Method Bean instantiation giving its unrelated class object -->
+	<bean id="conn" class="java.sql.DriverManager" factory-method="getConnection">
+		<constructor-arg value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<constructor-arg value="system"/>
+		<constructor-arg value="manager"/>
+	</bean>
+	
+	<!-- Static Factory Method Bean instantiation giving its unrelated class object -->
+	<bean id="sys" class="java.lang.System" factory-method="getProperties"/>
+	
+	<!-- Instance Factory Method Bean instantiation giving its same class object -->
+	<bean id="s1" class="java.lang.String">
+		<constructor-arg value="hello"/>
+	</bean>
+	<bean id="s2" factory-bean="s1" factory-method="concat">
+		<constructor-arg value=" how are you"/>
+	</bean>
+
+	<!-- Instance Factory Method Bean instantiation giving its unrelated class object -->
+	<bean id="sb" class="java.lang.StringBuffer">
+		<constructor-arg value="hello how are you"/>
+	</bean>
+	<bean id="s3" factory-bean="sb" factory-method="substring">
+		<constructor-arg value="0"/>
+		<constructor-arg value="5"/>
+	</bean>
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Dependent class configuration -->
+	<bean id="dfb" class="com.nt.beans.DateFactoryBean" scope="prototype">
+		<constructor-arg value="2020"/>
+		<constructor-arg value="09"/>
+		<constructor-arg value="20"/>		
+	</bean>
+	
+	<!-- Target bean configuration -->
+	<bean id="reminder" class="com.nt.beans.ScheduleReminder">
+		<constructor-arg ref="dfb"></constructor-arg>
+	</bean>
+
+</beans>

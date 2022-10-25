@@ -1,0 +1,25 @@
+DataBase details
+---------------------------------------------------------------
+EMPLOYEE_DETAILS Table
+---------------------------------------------------------------
+CREATE TABLE "SYSTEM"."EMPLOYEE_DETAILS" 
+   ("EMP_ID" NUMBER(*,0) NOT NULL ENABLE, 
+	"EMP_NAME" VARCHAR2(20 BYTE), 
+	"EMP_ADDRESS" VARCHAR2(20 BYTE), 
+	"DESG" VARCHAR2(20 BYTE), 
+	"BASIC_SALARY" VARCHAR2(20 BYTE), 
+	"NET_SALARY" VARCHAR2(20 BYTE), 
+	"GROSS_SALARY" VARCHAR2(20 BYTE), 
+	CONSTRAINT "EMPLOYEE_DETAILS_PK" PRIMARY KEY ("EMP_ID"));
+---------------------------------------------------------------
+
+---------------------------------------------------------------
+EMP_ID_SEQ Sequence
+---------------------------------------------------------------
+CREATE SEQUENCE  "SYSTEM"."EMP_ID_SEQ"  
+	MINVALUE 101 
+	MAXVALUE 500 
+	INCREMENT BY 1 
+	START WITH 101 
+	CACHE 20 ORDER  NOCYCLE ;
+---------------------------------------------------------------
